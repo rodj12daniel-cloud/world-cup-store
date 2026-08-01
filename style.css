@@ -11,7 +11,7 @@
 body {
     font-family: 'Poppins', 'Inter', sans-serif;
     color: #111;
-    background: linear-gradient(90deg, #f5f5f7 0%, #ffffff 100%);
+    background: linear-gradient(145deg, #e8f1ff 0%, #f5f0ff 45%, #fff9f4 100%);
 }
 
 html {
@@ -27,12 +27,13 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 70px;
-    background: rgba(255,255,255,0.95);
-    border-bottom: 1px solid #ddd;
+    padding: 20px 40px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.75) 100%);
+    border-bottom: 1px solid rgba(0,0,0,.08);
     position: sticky;
     top: 0;
     z-index: 1000;
+    backdrop-filter: blur(14px);
 }
 
 .logo {
@@ -57,6 +58,7 @@ header {
 .logo span {
     display: inline-block;
     line-height: 1;
+    color: #111;
 }
 
 nav a {
@@ -66,11 +68,12 @@ nav a {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.2px;
-    transition: color .3s ease;
+    transition: color .3s ease, transform .3s ease;
 }
 
 nav a:hover {
-    color: #555;
+    color: #0b6d33;
+    transform: translateY(-1px);
 }
 
 
@@ -80,7 +83,7 @@ nav a:hover {
 
 .hero {
     height: 650px;
-    background: linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.2) 100%),
+    background: linear-gradient(180deg, rgba(3, 34, 67, 0.55) 0%, rgba(13, 94, 150, 0.35) 60%, rgba(255,255,255,0.05) 100%),
                 url("Pics/wallpaper.jpg") center/cover;
     display: flex;
     justify-content: center;
@@ -101,9 +104,11 @@ nav a:hover {
     position: relative;
     z-index: 1;
     max-width: 720px;
-    padding: 80px 40px;
-    background: rgba(0,0,0,0.35);
+    padding: 70px 32px;
+    background: linear-gradient(135deg, rgba(17, 35, 59, 0.9), rgba(15, 85, 133, 0.85));
     border-radius: 28px;
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 25px 70px rgba(21, 56, 96, 0.25);
 }
 
 .hero h1 {
@@ -137,8 +142,8 @@ nav a:hover {
 }
 
 button {
-    background: #fff;
-    color: #000;
+    background: linear-gradient(135deg, #00a86b, #0f6f2f);
+    color: #fff;
     border: none;
     padding: 15px 35px;
     border-radius: 30px;
@@ -146,12 +151,14 @@ button {
     font-weight: 800;
     letter-spacing: 1px;
     text-transform: uppercase;
-    transition: background .3s ease, color .3s ease, transform .2s ease;
+    transition: background .3s ease, transform .2s ease, box-shadow .2s ease;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, .15);
 }
 
 button:hover {
-    background: #e6e6e6;
+    background: linear-gradient(135deg, #1a8f53, #0b6d33);
     transform: translateY(-2px);
+    box-shadow: 0 18px 34px rgba(0,0,0,0.2);
 }
 
 
@@ -178,18 +185,19 @@ button:hover {
 
 .card {
     width: 300px;
-    background: #fff;
-    border-radius: 15px;
+    background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+    border-radius: 20px;
     overflow: hidden;
-    border: 1px solid #ddd;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+    border: 1px solid rgba(31, 74, 124, .12);
+    box-shadow: 0 18px 40px rgba(22, 99, 160, .12);
     cursor: pointer;
-    transition: transform .3s ease, border-color .3s ease;
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
 }
 
 .card:hover {
     transform: translateY(-10px);
-    border-color: #bbb;
+    border-color: rgba(11, 109, 51, .35);
+    box-shadow: 0 24px 48px rgba(11, 109, 51, .15);
 }
 
 .card img {
@@ -622,31 +630,192 @@ footer {
    MOBILE
 ========================= */
 
+@media (max-width: 1024px) {
+    header {
+        padding: 18px 30px;
+    }
+
+    .products {
+        padding: 70px 30px;
+    }
+
+    .hero {
+        height: 560px;
+    }
+
+    .hero-content {
+        padding: 60px 28px;
+    }
+
+    .product-container {
+        gap: 24px;
+    }
+
+    .card {
+        width: 260px;
+    }
+}
+
 @media (max-width: 768px) {
     header {
         flex-direction: column;
-        padding: 20px;
+        padding: 16px 18px;
+        align-items: flex-start;
     }
 
     nav {
-        margin-top: 20px;
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    nav a {
+        margin-left: 0;
+        font-size: 13px;
+    }
+
+    .hero {
+        height: 520px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        padding: 50px 22px;
     }
 
     .hero h1 {
-        font-size: 40px;
+        font-size: 34px;
+        line-height: 1.05;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .hero button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .products {
+        padding: 50px 20px;
+    }
+
+    .products h2 {
+        font-size: 32px;
+        margin-bottom: 35px;
+    }
+
+    .product-container {
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .card img {
+        height: 280px;
     }
 
     .product-box {
         flex-direction: column;
+        gap: 24px;
+        padding: 24px;
     }
 
-    .gallery,
+    .thumbnail {
+        gap: 12px;
+    }
+
+    .thumbnail img {
+        width: 72px;
+        height: 72px;
+    }
+
     .product-info {
         width: 100%;
     }
 
-    #main-image {
-        height: 300px;
+    .product-info h1 {
+        font-size: 28px;
+    }
+
+    .product-info h2 {
+        font-size: 26px;
+    }
+
+    .product-info select,
+    .customization input {
+        width: 100%;
+    }
+
+    .cart {
+        width: 100%;
+        max-width: 480px;
+    }
+
+    .location {
+        padding: 50px 20px;
+    }
+
+    #map {
+        width: 100%;
+        height: 320px;
+    }
+
+    .contact-hero {
+        height: 260px;
+    }
+
+    .contact-container,
+    .about-store,
+    .owner-section {
+        flex-direction: column;
+        width: 95%;
+        margin: 40px auto;
+    }
+
+    .contact-info,
+    .about-content,
+    .owner-info {
+        width: 100%;
+    }
+
+    .contact-hero h1 {
+        font-size: 32px;
+    }
+
+    .contact-container,
+    .about-store {
+        gap: 24px;
+    }
+
+    .owner-section {
+        gap: 22px;
+        padding: 28px;
+    }
+
+    .owner-photo img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .owner-info h2 {
+        font-size: 30px;
+    }
+
+    .about-content h2,
+    .contact-info h2 {
+        font-size: 30px;
+    }
+
+    .about-store,
+    .contact-container {
+        margin: 50px auto;
     }
 }
 
