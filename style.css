@@ -61,54 +61,117 @@ header {
     color: #111;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-x: auto;
+    padding: 4px 0;
+}
+
 nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
     color: #111;
-    margin-left: 30px;
+    white-space: nowrap;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1.2px;
-    transition: color .3s ease, transform .3s ease;
+    letter-spacing: 1px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    transition: color .3s ease, transform .3s ease, background .3s ease;
 }
 
 nav a:hover {
-    color: #0b6d33;
+    color: #fff;
+    background: #0b6d33;
     transform: translateY(-1px);
 }
 
-/* horizontal scroll for mobile jersey cards */
+#cart-btn {
+    background: #0b6d33;
+    color: #fff;
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
+}
+
+#cart-btn:hover {
+    background: #0f5c2b;
+}
+
 .product-container {
     display: flex;
-    justify-content: center;
-    gap: 35px;
-    flex-wrap: wrap;
-}
-
-.product-container.scrollable {
+    gap: 28px;
     flex-wrap: nowrap;
     overflow-x: auto;
-    overflow-y: hidden;
+    padding: 12px 10px;
     scroll-snap-type: x mandatory;
-    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
 }
 
-.product-container.scrollable .card {
-    flex: 0 0 86%;
-    max-width: 86%;
+.product-container .card {
+    flex: 0 0 320px;
+    max-width: 320px;
     scroll-snap-align: center;
 }
 
 .product-container::-webkit-scrollbar {
-    height: 8px;
+    height: 10px;
 }
 
 .product-container::-webkit-scrollbar-thumb {
     background: rgba(11, 109, 51, .35);
-    border-radius: 99px;
+    border-radius: 999px;
 }
 
 .product-container::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, .7);
+    background: rgba(255, 255, 255, .75);
+}
+
+.products {
+    position: relative;
+}
+
+.products::before,
+.products::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 15px 40px rgba(11, 109, 51, 0.14);
+    pointer-events: none;
+    display: none;
+    font-size: 24px;
+    color: #0b6d33;
+    text-align: center;
+    line-height: 44px;
+}
+
+.products::before {
+    content: '‹';
+    left: 12px;
+    transform: translateY(-50%);
+    background-image: linear-gradient(90deg, rgba(255,255,255,.95), rgba(255,255,255,0));
+}
+
+.products::after {
+    content: '›';
+    right: 12px;
+    transform: translateY(-50%);
+    background-image: linear-gradient(270deg, rgba(255,255,255,.95), rgba(255,255,255,0));
+}
+
+@media (min-width: 900px) {
+    .products::before,
+    .products::after {
+        display: block;
+    }
 }
 
 
@@ -213,13 +276,17 @@ button:hover {
 
 .product-container {
     display: flex;
-    justify-content: center;
-    gap: 35px;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 28px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 12px 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
 }
 
 .card {
-    width: 300px;
+    width: 320px;
     background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
     border-radius: 20px;
     overflow: hidden;
@@ -693,22 +760,22 @@ footer {
 
 @media (max-width: 768px) {
     header {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         padding: 16px 18px;
-        align-items: stretch;
-        gap: 14px;
+        gap: 10px;
         background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92));
     }
 
     nav {
-        width: 100%;
-        margin-top: 0;
+        flex: 1 1 auto;
         display: flex;
         flex-wrap: nowrap;
         gap: 10px;
         overflow-x: auto;
-        padding: 12px 0;
-        border-top: 1px solid rgba(0,0,0,.08);
+        padding: 8px 0;
+        border-top: none;
     }
 
     nav a {
@@ -981,142 +1048,249 @@ footer {
 }
 
 /* =========================
-   ABOUT SECTION
+   CONTACT PAGE OVERRIDES
 ========================= */
 
-.about-store{
-    width:90%;
-    margin:80px auto;
-    display:flex;
-    flex-direction:row-reverse;
-    align-items:center;
-    gap:60px;
+.contact-hero {
+    min-height: 280px;
+    padding: 36px 22px;
+    background: linear-gradient(180deg, #0b3c76 0%, #142746 100%);
+    color: #fff;
+    text-align: center;
 }
 
-.about-image{
-    flex:1;
+.contact-hero h1 {
+    font-size: 42px;
+    letter-spacing: 1.8px;
+    margin-bottom: 14px;
 }
 
-.about-image img{
-    width:100%;
-    border-radius:20px;
-    box-shadow:0 15px 35px rgba(0,0,0,.15);
-    transition:.4s;
+.contact-hero p {
+    font-size: 17px;
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.7;
+    color: #dce7ff;
 }
 
-.about-image img:hover{
-    transform:scale(1.03);
+.contact-container,
+.about-store,
+.owner-section {
+    width: min(1180px, calc(100% - 32px));
+    margin: 50px auto;
+    display: flex;
+    gap: 34px;
+    align-items: stretch;
 }
 
-.about-content{
-    flex:1;
+.contact-container,
+.about-store {
+    align-items: center;
 }
 
-.about-tag{
-    color:#0b6d33;
-    font-weight:700;
-    letter-spacing:2px;
-    font-size:14px;
+.contact-image,
+.about-image {
+    flex: 1 1 48%;
 }
 
-.about-content h2{
-    font-size:42px;
-    margin:15px 0 25px;
+.contact-image img,
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(11, 109, 51, 0.14);
+    transition: transform 0.35s ease;
 }
 
-.about-content p{
-    color:#555;
-    line-height:1.8;
-    font-size:17px;
+.contact-image img:hover,
+.about-image img:hover {
+    transform: translateY(-4px) scale(1.01);
 }
 
-.about-features{
-    margin-top:35px;
-    display:flex;
-    flex-direction:column;
-    gap:25px;
+.contact-info,
+.about-content,
+.owner-info {
+    flex: 1 1 52%;
 }
 
-.feature{
-    display:flex;
-    align-items:flex-start;
-    gap:18px;
-    padding:18px;
-    border-radius:15px;
-    background:#f8f8f8;
-    transition:.3s;
+.contact-info h2,
+.about-content h2,
+.owner-info h2 {
+    font-size: 34px;
+    margin-bottom: 22px;
+    color: #14315e;
 }
 
-.feature:hover{
-    transform:translateX(8px);
-    box-shadow:0 10px 20px rgba(0,0,0,.08);
+.contact-info p,
+.about-content p,
+.owner-info p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: #3d475a;
+    margin-bottom: 16px;
 }
 
-.feature span{
-    font-size:34px;
+.about-store {
+    flex-direction: row-reverse;
 }
 
-.feature h3{
-    margin-bottom:8px;
-    font-size:20px;
+.about-tag {
+    display: inline-flex;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #0b6d33;
+    font-weight: 800;
+    margin-bottom: 16px;
 }
 
-.feature p{
-    margin:0;
-    font-size:15px;
-    color:#666;
+.about-content h2 {
+    font-size: 38px;
 }
 
-.owner-section{
-    width:90%;
-    margin:60px auto;
-    display:flex;
-    align-items:center;
-    gap:40px;
-    background:#f9f9f9;
-    border-radius:24px;
-    padding:40px;
-    box-shadow:0 20px 50px rgba(0,0,0,.08);
+.about-features {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
 }
 
-.owner-photo{
-    flex:0 0 220px;
+.feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #fafafa;
+    border: 1px solid rgba(11, 109, 51, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.owner-photo img{
-    width:220px;
-    height:220px;
-    object-fit:cover;
-    border-radius:50%;
-    border:6px solid #fff;
-    box-shadow:0 15px 35px rgba(0,0,0,.12);
+.feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 30px rgba(11, 109, 51, 0.12);
 }
 
-.owner-info{
-    flex:1;
+.feature span {
+    font-size: 32px;
+    line-height: 1;
 }
 
-.owner-info h2{
-    font-size:38px;
-    margin:15px 0 20px;
+.feature h3 {
+    margin-bottom: 8px;
+    font-size: 20px;
 }
 
-.owner-info p{
-    color:#555;
-    line-height:1.8;
-    font-size:18px;
+.feature p {
+    margin: 0;
+    color: #555;
 }
 
-/* Mobile */
+.owner-section {
+    background: #fff;
+    border-radius: 28px;
+    padding: 30px;
+    box-shadow: 0 25px 60px rgba(11, 109, 51, 0.1);
+}
 
-@media(max-width:768px){
+.owner-photo {
+    flex: 0 0 220px;
+}
 
-    .about-store{
-        flex-direction:row-reverse;
+.owner-photo img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    box-shadow: 0 20px 45px rgba(11, 109, 51, 0.14);
+}
+
+.owner-info h2 {
+    font-size: 36px;
+    margin: 12px 0 18px;
+}
+
+.owner-info p {
+    margin: 0;
+}
+
+@media (max-width: 1024px) {
+    .contact-container,
+    .about-store,
+    .owner-section {
+        gap: 24px;
+        width: min(100%, calc(100% - 32px));
     }
 
-    .about-content h2{
-        font-size:32px;
+    .contact-info h2,
+    .about-content h2,
+    .owner-info h2 {
+        font-size: 30px;
     }
 
+    .about-features {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
+
+@media (max-width: 768px) {
+    nav {
+        width: 100%;
+    }
+
+    .contact-hero {
+        padding: 28px 18px;
+    }
+
+    .contact-hero h1 {
+        font-size: 32px;
+    }
+
+    .contact-hero p {
+        font-size: 16px;
+    }
+
+    .contact-container,
+    .about-store,
+    .owner-section {
+        flex-direction: column;
+        align-items: center;
+        margin: 36px auto;
+        width: min(100%, calc(100% - 24px));
+    }
+
+    .contact-image,
+    .about-image,
+    .contact-info,
+    .about-content,
+    .owner-photo,
+    .owner-info {
+        width: 100%;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+
+    .about-store {
+        flex-direction: column;
+    }
+
+    .owner-section {
+        padding: 24px;
+    }
+
+    .owner-photo {
+        width: 180px;
+    }
+
+    .owner-photo img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .owner-info h2 {
+        font-size: 28px;
+    }
+}
+
