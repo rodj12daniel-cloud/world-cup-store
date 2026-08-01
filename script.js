@@ -245,13 +245,9 @@ viewer.addEventListener("wheel",function(e){
     e.preventDefault();
 
     if(e.deltaY < 0){
-
         scale += 0.2;
-
-    }else{
-
+    } else {
         scale -= 0.2;
-
     }
 
     if(scale < 1) scale = 1;
@@ -259,6 +255,60 @@ viewer.addEventListener("wheel",function(e){
 
     updateTransform();
 
+});
+
+let pinchStartDistance = 0;
+let initialScale = 1;
+let touchDragging = false;
+
+function getTouchDistance(touch1, touch2) {
+    const dx = touch2.clientX - touch1.clientX;
+    const dy = touch2.clientY - touch1.clientY;
+    return Math.hypot(dx, dy);
+}
+
+viewer.addEventListener("touchstart", function(e) {
+    if (!viewer) return;
+
+    if (e.touches.length === 1 && scale > 1) {
+        touchDragging = true;
+        startX = e.touches[0].clientX - posX;
+        startY = e.touches[0].clientY - posY;
+        viewer.style.cursor = "grabbing";
+    }
+
+    if (e.touches.length === 2) {
+        touchDragging = false;
+        pinchStartDistance = getTouchDistance(e.touches[0], e.touches[1]);
+        initialScale = scale;
+    }
+
+    e.preventDefault();
+});
+
+viewer.addEventListener("touchmove", function(e) {
+    if (!viewer) return;
+
+    if (e.touches.length === 1 && touchDragging && scale > 1) {
+        posX = e.touches[0].clientX - startX;
+        posY = e.touches[0].clientY - startY;
+        updateTransform();
+    }
+
+    if (e.touches.length === 2) {
+        const distance = getTouchDistance(e.touches[0], e.touches[1]);
+        scale = initialScale * (distance / pinchStartDistance);
+        if (scale < 1) scale = 1;
+        if (scale > 5) scale = 5;
+        updateTransform();
+    }
+
+    e.preventDefault();
+});
+
+viewer.addEventListener("touchend", function() {
+    touchDragging = false;
+    viewer.style.cursor = "grab";
 });
 
 // Start dragging
@@ -305,6 +355,11 @@ viewer.addEventListener("dblclick",function(){
 
     updateTransform();
 
+});
+
+viewer.addEventListener("touchcancel", function() {
+    touchDragging = false;
+    viewer.style.cursor = "grab";
 });
 
 // =========================
