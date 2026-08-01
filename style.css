@@ -42,6 +42,7 @@ header {
     top: 0;
     z-index: 1000;
     backdrop-filter: blur(14px);
+    min-width: 0;
 }
 
 .logo {
@@ -72,6 +73,7 @@ header {
 nav {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 18px;
     flex: 1 1 auto;
     min-width: 0;
@@ -104,6 +106,7 @@ nav a:hover {
     background: #0b6d33;
     color: #fff;
     box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
+    margin-left: auto;
 }
 
 #cart-btn:hover {
@@ -209,22 +212,23 @@ nav a:hover {
 .hero-content {
     position: relative;
     z-index: 1;
-    max-width: 720px;
-    padding: 70px 32px;
-    background: linear-gradient(135deg, rgba(17, 35, 59, 0.9), rgba(15, 85, 133, 0.85));
+    max-width: 640px;
+    padding: 50px 30px;
+    background: rgba(10, 31, 72, 0.90);
     border-radius: 28px;
-    border: 1px solid rgba(255,255,255,0.18);
-    box-shadow: 0 25px 70px rgba(21, 56, 96, 0.25);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 25px 70px rgba(21, 56, 96, 0.2);
+    backdrop-filter: blur(8px);
 }
 
 .hero h1 {
-    font-size: 64px;
+    font-size: 62px;
     font-weight: 800;
-    letter-spacing: 2px;
+    letter-spacing: 1.8px;
     text-transform: uppercase;
     color: #fff;
     line-height: 1.05;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    text-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
 
 .hero p {
