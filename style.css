@@ -882,13 +882,15 @@ footer {
     }
 
     #cart-btn {
-        order: 2;
-        position: fixed;
-        bottom: 18px;
-        right: 18px;
-        width: 52px;
-        height: 52px;
-        min-width: 52px;
+        order: unset;
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 18px !important;
+        left: auto !important;
+        top: auto !important;
+        width: 54px;
+        height: 54px;
+        min-width: 54px;
         padding: 0;
         font-size: 0;
         border-radius: 50%;
@@ -897,7 +899,8 @@ footer {
         justify-content: center;
         align-items: center;
         display: inline-flex;
-        z-index: 1500;
+        z-index: 1600;
+        overflow: visible;
     }
 
     #cart-btn span {
@@ -906,7 +909,7 @@ footer {
 
     #cart-btn::before {
         content: '🛒';
-        font-size: 20px;
+        font-size: 22px;
         color: #fff;
     }
 
@@ -956,6 +959,32 @@ footer {
         flex: 0 0 280px;
         max-width: 280px;
         scroll-snap-align: center;
+    }
+
+    .product-box {
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px;
+        width: 100%;
+        max-width: 100%;
+        max-height: calc(100vh - 56px);
+    }
+
+    .gallery {
+        width: 100%;
+    }
+
+    .image-viewer {
+        width: 100%;
+        min-height: 380px;
+        height: min(68vh, 500px);
+    }
+
+    .image-viewer img {
+        width: 100%;
+        max-height: 100%;
+        height: auto;
+        object-fit: contain;
     }
 
     .product-container::-webkit-scrollbar {
