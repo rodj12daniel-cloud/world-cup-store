@@ -32,8 +32,8 @@ img {
 ========================= */
 
 header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
     align-items: center;
     padding: 20px 40px;
     background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.75) 100%);
@@ -43,6 +43,7 @@ header {
     z-index: 1000;
     backdrop-filter: blur(14px);
     min-width: 0;
+    gap: 24px;
 }
 
 .logo {
@@ -79,6 +80,7 @@ nav {
     min-width: 0;
     overflow-x: auto;
     padding: 4px 0;
+    margin: 0 auto;
 }
 
 nav a {
@@ -106,7 +108,6 @@ nav a:hover {
     background: #0b6d33;
     color: #fff;
     box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
-    margin-left: auto;
 }
 
 #cart-btn:hover {
