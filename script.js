@@ -196,6 +196,10 @@ function updateCart() {
 
     cartTotal.innerHTML = total.toFixed(2);
     cartCount.innerHTML = count;
+    let cartBtn = document.getElementById("cart-btn");
+    if (cartBtn) {
+        cartBtn.dataset.count = count;
+    }
 }
 
 function changeQuantity(index, amount) {
