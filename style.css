@@ -20,6 +20,10 @@ body {
     min-width: 0;
 }
 
+body.no-scroll {
+    overflow: hidden;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -361,29 +365,34 @@ button:hover {
 .product-modal {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, .75);
     z-index: 3000;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: 28px 16px;
 }
 
 .product-modal.active {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .product-box {
     width: 950px;
-    max-width: 90%;
+    max-width: 100%;
+    max-height: calc(100vh - 56px);
     background: white;
-    padding: 40px;
+    padding: 32px;
     border-radius: 20px;
     display: flex;
     gap: 40px;
     position: relative;
+    overflow-y: auto;
 }
 
 .close-product {
@@ -785,6 +794,7 @@ footer {
 
 @media (max-width: 768px) {
     header {
+        display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -800,9 +810,9 @@ footer {
         min-width: 0;
         display: flex;
         flex-wrap: nowrap;
-        gap: 10px;
+        gap: 8px;
         overflow-x: auto;
-        padding: 8px 0;
+        padding: 6px 0;
         border-top: none;
         scrollbar-width: none;
     }
@@ -813,14 +823,29 @@ footer {
 
     nav a {
         margin-left: 0;
-        font-size: 13px;
+        font-size: 12px;
         flex: 0 0 auto;
         min-width: max-content;
         white-space: nowrap;
-        padding: 10px 14px;
+        padding: 8px 12px;
         border-radius: 999px;
         background: rgba(255,255,255,0.95);
-        box-shadow: 0 8px 22px rgba(0,0,0,.08);
+        box-shadow: 0 8px 18px rgba(0,0,0,.08);
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .logo img {
+        width: 36px;
+        height: 36px;
+    }
+
+    #cart-btn {
+        min-width: auto;
+        padding: 10px 12px;
+        font-size: 13px;
     }
 
     .hero {

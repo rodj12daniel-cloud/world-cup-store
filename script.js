@@ -45,10 +45,12 @@ function openProduct(name, price, img1, img2, img3, img4, description) {
 
     // Show Modal
     document.getElementById("product-modal").classList.add("active");
+    document.body.classList.add("no-scroll");
 }
 
 function closeProduct() {
     document.getElementById("product-modal").classList.remove("active");
+    document.body.classList.remove("no-scroll");
 }
 
 function changeImage(newSrc){
@@ -314,6 +316,7 @@ if (cartBtn) {
     cartBtn.addEventListener("click", function(e) {
         e.preventDefault();
         document.querySelector(".cart").classList.add("active");
+        document.body.classList.add("no-scroll");
     });
 }
 
@@ -321,6 +324,7 @@ let closeCartBtn = document.getElementById("close-cart");
 if (closeCartBtn) {
     closeCartBtn.addEventListener("click", function() {
         document.querySelector(".cart").classList.remove("active");
+        document.body.classList.remove("no-scroll");
     });
 }
 
