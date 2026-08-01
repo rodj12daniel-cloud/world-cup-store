@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Cup Store</title>
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- LEAFLET -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <img src="Pics/logo.jpg" alt="World Cup Store logo">
+            <span>WORLD CUP STORE</span>
+        </a>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#shop">Shop</a>
+            <a href="#location">Store</a>
+            <a href="contact.html">Contact</a>
+            <a href="#" id="cart-btn">🛒 Cart (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>WEAR YOUR<br>NATION WITH PRIDE</h1>
+            <p>Official 2026 World Cup Jerseys</p>
+            <button>Shop Now</button>
+        </div>
+    </section>
+
+    <section id="shop" class="products">
+        <h2>Featured Jerseys</h2>
+
+        <div class="product-container">
+
+            <!-- PRODUCT 1: BRAZIL -->
+            <div class="card" onclick="openProduct(
+                'Brazil Home Jersey',
+                '3795',
+                'Pics/braziu.avif',             /* 1. MAIN PHOTO & THUMBNAIL 1 */
+                'Pics/brazilsecondpic.jpg',    /* 2. THUMBNAIL 2 (YOUR SECOND PIC) */
+                'Pics/brazil/braziu2.jpg',     /* 3. THUMBNAIL 3 (REPLACE THIS PATH) */
+                'Pics/brazil/braziu4.jpg',    /* 4. THUMBNAIL 4 (REPLACE THIS PATH) */
+                'Official 2026 Brazil Home Jersey featuring dry-fit technology and iconic yellow colorway.'
+            )">
+                <img src="Pics/braziu.avif" alt="Brazil Home Jersey">
+                <h3>Brazil Home Jersey</h3>
+                <p>2026 Edition</p>
+                <span>₱3,795</span>
+            </div>
+
+            <!-- PRODUCT 2: ARGENTINA -->
+            <div class="card" onclick="openProduct(
+                'Argentina Home Jersey',
+                '3795',
+                'Pics/arg.jpg',               /* 1. MAIN PHOTO & THUMBNAIL 1 */
+                'Pics/arg/arg.jpg',               /* 2. THUMBNAIL 2 */
+                'Pics/arg/arg2.jpg',               /* 3. THUMBNAIL 3 */
+                'Pics/arg/arg3.jpg',               /* 4. THUMBNAIL 4 */
+                'Official 2026 Argentina Home Jersey with three stars embroidered on the chest.'
+            )">
+                <img src="Pics/arg.jpg" alt="Argentina Home Jersey">
+                <h3>Argentina Home Jersey</h3>
+                <p>2026 Edition</p>
+                <span>₱3,795</span>
+            </div>
+
+            <!-- PRODUCT 3: ENGLAND -->
+            <div class="card" onclick="openProduct(
+                'England Home Jersey',
+                '3795',
+                'Pics/eng.jpg',               /* 1. MAIN PHOTO & THUMBNAIL 1 */
+                'Pics/eng]/eng1.jpg',               /* 2. THUMBNAIL 2 */
+                'Pics/eng]/eng2.jpg',               /* 3. THUMBNAIL 3 */
+                'Pics/eng]/eng3.jpg',               /* 4. THUMBNAIL 4 */
+                'Official 2026 England Home Jersey designed for breathable, lightweight performance.'
+            )">
+                <img src="Pics/eng.jpg" alt="England Home Jersey">
+                <h3>England Home Jersey</h3>
+                <p>2026 Edition</p>
+                <span>₱3,795</span>
+            </div>
+
+            <!-- PRODUCT 4: Spain -->
+            <div class="card" onclick="openProduct(
+                'Spain Home Jersey',
+                '3795',
+                'Pics/spain.jpg',               /* 1. MAIN PHOTO & THUMBNAIL 1 */
+                'Pics/spain/spain1.jpg',               /* 2. THUMBNAIL 2 */
+                'Pics/spain/spain2.jpg',               /* 3. THUMBNAIL 3 */
+                'Pics/spain/spain3.jpg',               /* 4. THUMBNAIL 4 */
+                'Official 2026 Spain Home Jersey designed for breathable, lightweight performance.'
+            )">
+                <img src="Pics/spain.jpg" alt="Spain Home Jersey">
+                <h3>Spain Home Jersey</h3>
+                <p>2026 Edition</p>
+                <span>₱3,795</span>
+            </div>
+
+             <!-- PRODUCT 4: Japan -->
+            <div class="card" onclick="openProduct(
+                'Japan Home Jersey',
+                '3795',
+                'Pics/jap/jap2.jpg',               /* 1. MAIN PHOTO & THUMBNAIL 1 */
+                'Pics/jap/jap.jpg',               /* 2. THUMBNAIL 2 */
+                'Pics/jap/jap3.jpg',               /* 3. THUMBNAIL 3 */
+                'Pics/jap/jap4.jpg',               /* 4. THUMBNAIL 4 */
+                'Official 2026 Japan Home Jersey designed for breathable, lightweight performance.'
+            )">
+                <img src="Pics/jap/jap2.jpg" alt="Japan Home Jersey">
+                <h3>Japan Home Jersey</h3>
+                <p>2026 Edition</p>
+                <span>₱3,795</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PRODUCT DETAILS MODAL -->
+    <div class="product-modal" id="product-modal">
+        <div class="product-box">
+            <button class="close-product" onclick="closeProduct()">X</button>
+
+          <div class="gallery">
+
+    <div class="image-viewer">
+        <img id="main-image" src="" alt="">
+    </div>
+
+    <div class="thumbnail">
+        <img id="photo1" src="" onclick="changeImage(this.src)">
+        <img id="photo2" src="" onclick="changeImage(this.src)">
+        <img id="photo3" src="" onclick="changeImage(this.src)">
+        <img id="photo4" src="" onclick="changeImage(this.src)">
+    </div>
+
+</div>
+
+            <div class="product-info">
+                <h1 id="product-name"></h1>
+                <h2>₱<span id="product-price"></span></h2>
+                <p id="product-description"></p>
+
+                <h3>Select Size</h3>
+                <select id="product-size">
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                    <option>XL</option>
+                    <option>XXL</option>
+                </select>
+
+                <div class="customization">
+                    <h3>Customize Name & Number</h3>
+                    <label>
+                        Player Name
+                        <input type="text" id="custom-name" placeholder="e.g. MESSI" pattern="[A-Za-z ]*" title="Letters only" maxlength="11">
+                    </label>
+                    <label>
+                        Player Number
+                        <input type="text" id="custom-number" placeholder="e.g. 10" pattern="\d*" title="Numbers only" maxlength="2">
+                    </label>
+                    <p class="custom-note">Custom name or number adds ₱1,000 to the total price. Customized shirts include 2026 FIFA World Cup patches.</p>
+                </div>
+
+                <button id="modal-cart">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button id="close-cart">X</button>
+        </div>
+
+        <div id="cart-items"></div>
+
+        <h3>Total: ₱<span id="cart-total">0</span></h3>
+
+        <button id="checkout-btn" class="checkout">Checkout with PayMongo</button>
+    </div>
+
+    <!-- LOCATION -->
+    <section id="location" class="location">
+        <h2>Visit Our Store</h2>
+        <p>Palocpoc II, Mendez, Cavite Philippines</p>
+        <div id="map"></div>
+    </section>
+
+    <footer>
+        <h3>WORLD CUP STORE</h3>
+        <p>Football Jerseys • 2026 Collection</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
