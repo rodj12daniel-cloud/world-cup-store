@@ -215,6 +215,178 @@ function initializeHomepageVideo() {
     }
 }
 
+function initializeChatbot() {
+    if (document.getElementById('chatbot-widget')) return;
+
+    const chatbotMarkup = `
+        <div class="chatbot-widget" id="chatbot-widget" aria-live="polite">
+            <button class="chatbot-launcher" id="chatbot-launcher" aria-label="Open chat support">
+                <span class="chatbot-launcher-icon">💬</span>
+                <span class="chatbot-launcher-text">Chat</span>
+            </button>
+
+            <section class="chatbot-panel" id="chatbot-panel" aria-hidden="true">
+                <header class="chatbot-header">
+                    <div>
+                        <p class="chatbot-eyebrow">Support</p>
+                        <h3>World Cup Assistant</h3>
+                    </div>
+                    <button class="chatbot-close" id="chatbot-close" aria-label="Close chat">×</button>
+                </header>
+
+                <div class="chatbot-body" id="chatbot-messages">
+                    <div class="chatbot-message bot">Hi, I can help with store hours, location, sizing, custom printing, and checkout.</div>
+                </div>
+
+                <div class="chatbot-quick-replies">
+                    <button type="button" data-chat-question="store hours">Store hours</button>
+                    <button type="button" data-chat-question="location">Location</button>
+                    <button type="button" data-chat-question="sizing">Sizing</button>
+                    <button type="button" data-chat-question="custom printing">Custom printing</button>
+                    <button type="button" data-chat-question="checkout">Checkout help</button>
+                </div>
+
+                <form class="chatbot-form" id="chatbot-form">
+                    <input id="chatbot-input" type="text" placeholder="Ask a question..." autocomplete="off">
+                    <button type="submit">Send</button>
+                </form>
+            </section>
+        </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', chatbotMarkup);
+
+    const launcher = document.getElementById('chatbot-launcher');
+    const panel = document.getElementById('chatbot-panel');
+    const closeButton = document.getElementById('chatbot-close');
+    const form = document.getElementById('chatbot-form');
+    const input = document.getElementById('chatbot-input');
+    const messages = document.getElementById('chatbot-messages');
+    const quickReplies = document.querySelectorAll('.chatbot-quick-replies button');
+
+    function openChatbot() {
+        if (!panel) return;
+        panel.classList.add('open');
+        panel.setAttribute('aria-hidden', 'false');
+        if (input) {
+            input.focus();
+        }
+    }
+
+    function closeChatbot() {
+        if (!panel) return;
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden', 'true');
+    }
+
+    function appendMessage(text, type) {
+        if (!messages) return;
+        const bubble = document.createElement('div');
+        bubble.className = `chatbot-message ${type}`;
+        bubble.textContent = text;
+        messages.appendChild(bubble);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function appendTypingIndicator() {
+        if (!messages) return null;
+        const bubble = document.createElement('div');
+        bubble.className = 'chatbot-message bot chatbot-typing';
+        bubble.innerHTML = `
+            <span class="chatbot-typing-label">Typing</span>
+            <span class="chatbot-typing-dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        `;
+        messages.appendChild(bubble);
+        messages.scrollTop = messages.scrollHeight;
+        return bubble;
+    }
+
+    function sendChatResponse(question) {
+        openChatbot();
+        const typingBubble = appendTypingIndicator();
+        const replyDelay = 900 + Math.floor(Math.random() * 700);
+
+        window.setTimeout(function() {
+            if (typingBubble && typingBubble.parentNode) {
+                typingBubble.parentNode.removeChild(typingBubble);
+            }
+            appendMessage(getChatResponse(question), 'bot');
+        }, replyDelay);
+    }
+
+    function getChatResponse(question) {
+        const normalized = question.toLowerCase();
+
+        if (normalized.includes('hour') || normalized.includes('open')) {
+            return 'We’re open Monday to Sunday, 9:00 AM to 8:00 PM.';
+        }
+
+        if (normalized.includes('location') || normalized.includes('where')) {
+            return 'Our store is in Palocpoc II, Mendez, Cavite, Philippines.';
+        }
+
+        if (normalized.includes('size') || normalized.includes('sizing')) {
+            return 'Jerseys are available in Small, Medium, Large, XL, and XXL. Use the size selector in the product modal.';
+        }
+
+        if (normalized.includes('custom') || normalized.includes('print')) {
+            return 'You can add a custom name and number on jersey items. Customization adds ₱1,000 to the total price.';
+        }
+
+        if (normalized.includes('checkout') || normalized.includes('paymongo') || normalized.includes('cart')) {
+            return 'Add items to your cart, then use Checkout with PayMongo to continue to payment.';
+        }
+
+        if (normalized.includes('contact') || normalized.includes('support')) {
+            return 'You can reach us at +63 912 345 6789 or worldcupstore@email.com.';
+        }
+
+        return 'I can help with hours, location, sizing, custom printing, and checkout. Try one of the quick buttons below.';
+    }
+
+    if (launcher) {
+        launcher.addEventListener('click', function() {
+            if (!panel) return;
+            const isOpen = panel.classList.contains('open');
+            if (isOpen) {
+                closeChatbot();
+            } else {
+                openChatbot();
+            }
+        });
+    }
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeChatbot);
+    }
+
+    quickReplies.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const question = this.dataset.chatQuestion || this.textContent;
+            appendMessage(question, 'user');
+            sendChatResponse(question);
+        });
+    });
+
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (!input) return;
+
+            const question = input.value.trim();
+            if (!question) return;
+
+            appendMessage(question, 'user');
+            input.value = '';
+            sendChatResponse(question);
+        });
+    }
+}
+
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initializeCartUI);
 } else {
@@ -400,6 +572,10 @@ document.addEventListener('DOMContentLoaded', function() {
     bindReviewForm();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    initializeChatbot();
+});
+
 // =========================
 // ITEMS PAGE: products grid, search & filters
 // =========================
@@ -410,17 +586,17 @@ function initItemsPage() {
 
     // products list: include jerseys from index plus new items
     const products = [
-        { name: 'Brazil Home Jersey', price: 3795, image: 'Pics/braziu.avif', category: 'Jerseys', thumbs: ['Pics/braziu.avif','Pics/brazilsecondpic.jpg','Pics/brazil/braziu2.jpg','Pics/brazil/braziu4.jpg'], description: 'Official 2026 Brazil Home Jersey.' },
-        { name: 'Argentina Home Jersey', price: 3795, image: 'Pics/arg.jpg', category: 'Jerseys', thumbs: ['Pics/arg.jpg','Pics/arg/arg.jpg','Pics/arg/arg2.jpg','Pics/arg/arg3.jpg'], description: 'Official 2026 Argentina Home Jersey.' },
-        { name: 'England Home Jersey', price: 3795, image: 'Pics/eng.jpg', category: 'Jerseys', thumbs: ['Pics/eng.jpg','Pics/eng]/eng1.jpg','Pics/eng]/eng2.jpg','Pics/eng]/eng3.jpg'], description: 'Official 2026 England Home Jersey.' },
-        { name: 'Spain Home Jersey', price: 3795, image: 'Pics/spain.jpg', category: 'Jerseys', thumbs: ['Pics/spain.jpg','Pics/spain/spain1.jpg','Pics/spain/spain2.jpg','Pics/spain/spain3.jpg'], description: 'Official 2026 Spain Home Jersey.' },
-        { name: 'Japan Home Jersey', price: 3795, image: 'Pics/jap/jap2.jpg', category: 'Jerseys', thumbs: ['Pics/jap/jap2.jpg','Pics/jap/jap.jpg','Pics/jap/jap3.jpg','Pics/jap/jap4.jpg'], description: 'Official 2026 Japan Home Jersey.' },
-        { name: 'Germany Home Jersey', price: 3795, image: 'Pics/ger/ger.jpg', category: 'Jerseys', thumbs: ['Pics/ger/ger.jpg','Pics/ger/ger1.jpg','Pics/ger/ger2.jpg','Pics/ger/ger3.jpg'], description: 'Official 2026 Germany Home Jersey.' },
+        { name: 'Nike Brazil Home Jersey', price: 3795, image: 'Pics/braziu.avif', category: 'Jerseys', thumbs: ['Pics/braziu.avif','Pics/brazilsecondpic.jpg','Pics/brazil/braziu2.jpg','Pics/brazil/braziu4.jpg'], description: 'Official 2026 Brazil Home Jersey.' },
+        { name: 'adidas Argentina Home Jersey', price: 3795, image: 'Pics/arg.jpg', category: 'Jerseys', thumbs: ['Pics/arg.jpg','Pics/arg/arg.jpg','Pics/arg/arg2.jpg','Pics/arg/arg3.jpg'], description: 'Official 2026 Argentina Home Jersey.' },
+        { name: 'Nike England Home Jersey', price: 3795, image: 'Pics/eng.jpg', category: 'Jerseys', thumbs: ['Pics/eng.jpg','Pics/eng]/eng1.jpg','Pics/eng]/eng2.jpg','Pics/eng]/eng3.jpg'], description: 'Official 2026 England Home Jersey.' },
+        { name: 'adidas Spain Home Jersey', price: 3795, image: 'Pics/spain.jpg', category: 'Jerseys', thumbs: ['Pics/spain.jpg','Pics/spain/spain1.jpg','Pics/spain/spain2.jpg','Pics/spain/spain3.jpg'], description: 'Official 2026 Spain Home Jersey.' },
+        { name: 'adidas Japan Home Jersey', price: 3795, image: 'Pics/jap/jap2.jpg', category: 'Jerseys', thumbs: ['Pics/jap/jap2.jpg','Pics/jap/jap.jpg','Pics/jap/jap3.jpg','Pics/jap/jap4.jpg'], description: 'Official 2026 Japan Home Jersey.' },
+        { name: 'adidas Germany Home Jersey', price: 3795, image: 'Pics/ger/ger.jpg', category: 'Jerseys', thumbs: ['Pics/ger/ger.jpg','Pics/ger/ger1.jpg','Pics/ger/ger2.jpg','Pics/ger/ger3.jpg'], description: 'Official 2026 Germany Home Jersey.' },
 
         // new items
         { name: 'Champions Match Ball', price: 1295, image: 'Pics/items/balls/ball4.jpg', category: 'Footballs', thumbs: ['Pics/items/balls/ball4.jpg','Pics/items/ball.jpg','Pics/items/balls/ball3.jpg','Pics/items/balls/ball2.jpg'], description: 'Official match ball.' },
-        { name: 'Fan T-Shirt', price: 995, image: 'Pics/items/liverpool shirt.jpg', category: 'T-Shirts', thumbs: ['Pics/items/liverpool shirt.jpg','Pics/items/liverpool shirt.jpg','Pics/items/liverpool shirt.jpg','Pics/items/liverpool shirt.jpg'], description: 'Casual fan t-shirt.' },
-        { name: 'Warm-Up Jacket', price: 2495, image: 'Pics/jacket.jpg', category: 'Jackets', thumbs: ['Pics/jacket.jpg','Pics/jacket.jpg','Pics/jacket.jpg','Pics/jacket.jpg'], description: 'Lightweight warm-up jacket.' }
+        { name: 'adidas Originals Liverpool 25/26 OG T-Shirt', price: 995, image: 'Pics/items/liverpool shirt.jpg', category: 'T-Shirts', thumbs: ['Pics/items/liverpool shirt.jpg','Pics/items/liverpool shirt.jpg','Pics/items/liverpool shirt.jpg','Pics/items/liverpool shirt.jpg'], description: 'Casual fan t-shirt.' },
+        { name: 'Copa Football Portugal 1995 Retro Jacket', price: 2495, image: 'Pics/items/jacketportugal.jpg', category: 'Jackets', thumbs: ['Pics/items/jacketportugal.jpg','Pics/items/jacketportugal.jpg','Pics/items/jacketportugal.jpg','Pics/items/jacketportugal.jpg'], description: 'Lightweight retro jacket.' }
     ];
 
     // render function
