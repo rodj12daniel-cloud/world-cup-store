@@ -97,7 +97,24 @@ function saveCart() {
     localStorage.setItem('worldCupCart', JSON.stringify(cart));
 }
 
+let cartBtn;
+let cartSidebar;
+
 loadCart();
+
+function initializeCartUI() {
+    cartBtn = document.getElementById("cart-btn");
+    cartSidebar = document.querySelector(".cart");
+    updateCart();
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeCartUI);
+} else {
+    initializeCartUI();
+}
+
+window.addEventListener("load", initializeCartUI);
 
 let modalCartBtn = document.getElementById("modal-cart");
 if (modalCartBtn) {
@@ -186,7 +203,9 @@ function updateCart() {
     let cartTotal = document.getElementById("cart-total");
     let cartCount = document.getElementById("cart-count");
 
-    cartItems.innerHTML = "";
+    if (cartItems) {
+        cartItems.innerHTML = "";
+    }
 
     let total = 0;
     let count = 0;
@@ -195,23 +214,25 @@ function updateCart() {
         total += item.price * item.quantity;
         count += item.quantity;
 
-        cartItems.innerHTML += `
-            <div class="cart-item">
-                <div class="cart-item-preview">
-                    <img src="${item.image}" alt="${item.name}">
-                    <div>
-                        <h3>${item.name}</h3>
-                        <p>Price: ₱${item.price}</p>
+        if (cartItems) {
+            cartItems.innerHTML += `
+                <div class="cart-item">
+                    <div class="cart-item-preview">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div>
+                            <h3>${item.name}</h3>
+                            <p>Price: ₱${item.price}</p>
+                        </div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button onclick="changeQuantity(${index}, -1)">-</button>
+                        <span class="cart-quantity">${item.quantity}</span>
+                        <button onclick="changeQuantity(${index}, 1)">+</button>
+                        <button class="remove-button" onclick="removeItem(${index})">Remove</button>
                     </div>
                 </div>
-                <div class="cart-item-actions">
-                    <button onclick="changeQuantity(${index}, -1)">-</button>
-                    <span class="cart-quantity">${item.quantity}</span>
-                    <button onclick="changeQuantity(${index}, 1)">+</button>
-                    <button class="remove-button" onclick="removeItem(${index})">Remove</button>
-                </div>
-            </div>
-        `;
+            `;
+        }
     });
 
     if (cartTotal) {
@@ -246,29 +267,28 @@ function removeItem(index) {
 const viewer = document.querySelector(".image-viewer");
 const image = document.getElementById("main-image");
 
-image.draggable = false;
+if (viewer && image) {
+    image.draggable = false;
 
-image.addEventListener("dragstart", function (e) {
-    e.preventDefault();
-});
+    image.addEventListener("dragstart", function (e) {
+        e.preventDefault();
+    });
 
-let scale = 1;
-let posX = 0;
-let posY = 0;
+    let scale = 1;
+    let posX = 0;
+    let posY = 0;
 
-let dragging = false;
-let startX = 0;
-let startY = 0;
+    let dragging = false;
+    let startX = 0;
+    let startY = 0;
 
-function updateTransform(){
+    function updateTransform(){
+        image.style.transform =
+        `translate3d(${posX}px, ${posY}px, 0) scale(${scale})`;
+    }
 
-image.style.transform =
-`translate3d(${posX}px, ${posY}px, 0) scale(${scale})`;
-
-}
-
-// Mouse wheel zoom
-viewer.addEventListener("wheel",function(e){
+    // Mouse wheel zoom
+    viewer.addEventListener("wheel",function(e){
 
     e.preventDefault();
 
@@ -334,7 +354,7 @@ viewer.addEventListener("touchmove", function(e) {
     e.preventDefault();
 });
 
-viewer.addEventListener("touchend", function() {
+    viewer.addEventListener("touchend", function() {
     touchDragging = false;
     viewer.style.cursor = "grab";
 });
@@ -385,20 +405,19 @@ viewer.addEventListener("dblclick",function(){
 
 });
 
-viewer.addEventListener("touchcancel", function() {
-    touchDragging = false;
-    viewer.style.cursor = "grab";
-});
+    viewer.addEventListener("touchcancel", function() {
+        touchDragging = false;
+        viewer.style.cursor = "grab";
+    });
+}
 
 // =========================
 // OPEN / CLOSE CART
 // =========================
 
-let cartBtn = document.getElementById("cart-btn");
 if (cartBtn) {
     cartBtn.addEventListener("click", function(e) {
         e.preventDefault();
-        const cartSidebar = document.querySelector(".cart");
         if (cartSidebar) {
             cartSidebar.classList.add("active");
             document.body.classList.add("no-scroll");
@@ -431,6 +450,8 @@ if (heroBtn) {
 // =========================
 // PAYMONGO CHECKOUT HANDLER
 // =========================
+
+initializeCartUI();
 
 let checkoutBtn = document.getElementById("checkout-btn");
 
