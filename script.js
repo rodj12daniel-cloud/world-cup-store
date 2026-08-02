@@ -1064,3 +1064,78 @@ if (checkoutBtn) {
         }
     });
 }
+
+/* =========================
+   PAGE TRANSITION HANDLER
+   Intercepts same-origin link clicks, fades out the page,
+   then navigates. Also ensures pages restored from bfcache
+   show correctly.
+   ========================= */
+
+(function() {
+    const TRANSITION_CLASS = 'fade-out';
+    const TRANSITION_MS = 200; // match CSS transition time (200ms)
+
+    function isSameOrigin(href) {
+        try {
+            const url = new URL(href, location.href);
+            return url.origin === location.origin;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    // Remove any lingering fade when the page becomes visible
+    window.addEventListener('pageshow', function(e) {
+        document.body.classList.remove(TRANSITION_CLASS);
+    }, false);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // ensure body is visible on load
+        document.body.classList.remove(TRANSITION_CLASS);
+
+        document.addEventListener('click', function(e) {
+            const a = e.target.closest('a');
+            if (!a) return;
+
+            const href = a.getAttribute('href');
+
+            // ignore anchors, javascript, mailto, tel, downloads, and links with target
+            if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || a.target === '_blank' || a.hasAttribute('download')) return;
+
+            // only handle same-origin navigations
+            if (!isSameOrigin(href)) return;
+
+            // allow ctrl/cmd/shift/alt clicks to open in new tab/window
+            if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+
+            // If link is same-page + hash (e.g. index.html#shop or /index.html#shop), do smooth scroll instead
+            try {
+                const targetUrl = new URL(href, location.href);
+                if (targetUrl.pathname === location.pathname && targetUrl.hash) {
+                    e.preventDefault();
+                    const el = document.querySelector(targetUrl.hash);
+                    if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // update the hash without causing a reload
+                        history.replaceState(null, '', targetUrl.hash);
+                    } else {
+                        // if element not present, fallback to normal navigation
+                        document.body.classList.add(TRANSITION_CLASS);
+                        setTimeout(function() { location.href = href; }, TRANSITION_MS);
+                    }
+                    return;
+                }
+            } catch (err) {
+                // ignore URL parse errors and continue to normal flow
+            }
+
+            e.preventDefault();
+            document.body.classList.add(TRANSITION_CLASS);
+
+            setTimeout(function() {
+                location.href = href;
+            }, TRANSITION_MS);
+        }, { capture: true });
+    });
+})();

@@ -14,7 +14,7 @@ html {
 }
 
 body {
-    font-family: 'Poppins', 'Inter', sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     color: #111;
     background: linear-gradient(145deg, #e9f5ee 0%, #edf9f1 45%, #f8fcf9 100%);
     min-width: 0;
@@ -1332,22 +1332,22 @@ button:hover {
 
 .store-hero {
     position: relative;
-    padding: 100px 50px;
+    padding: 60px 40px;
     background:
         radial-gradient(700px 300px at 85% -10%, rgba(74, 222, 128, 0.18), transparent 60%),
         radial-gradient(600px 260px at 8% 110%, rgba(255, 215, 0, 0.10), transparent 60%),
         linear-gradient(180deg, #1F552F 0%, #123A22 100%);
     color: #fff;
-    min-height: 660px;
+    min-height: 520px;
     overflow: hidden;
 }
 
 .store-hero-inner {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr 1.1fr;
     align-items: center;
-    gap: 60px;
-    max-width: 1300px;
+    gap: 40px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -1456,6 +1456,12 @@ button:hover {
     backdrop-filter: blur(10px);
 }
 
+/* enforce readable text color for the store hero buttons (higher specificity) */
+body.store-page .store-hero .button.secondary,
+body.store-page .store-hero .button.primary {
+    color: #fff;
+}
+
 .store-hero .button.secondary:hover {
     background: rgba(255, 255, 255, 0.18);
     border-color: rgba(255, 255, 255, 0.95);
@@ -1469,7 +1475,7 @@ button:hover {
 .store-hero-media {
     display: flex;
     justify-content: flex-end; /* push image to the right side of its column */
-    padding-left: 40px; /* add breathing room from left */
+    padding-left: 20px; /* reduce breathing room to tighten layout */
 }
 
 .store-hero-media img {
@@ -2295,4 +2301,20 @@ footer {
     .owner-info h2 {
         font-size: 28px;
     }
+}
+
+/* =========================
+   PAGE TRANSITIONS
+   ========================= */
+
+/* Smooth fade when navigating between pages */
+body {
+    transition: opacity .2s ease;
+    -webkit-transition: opacity .2s ease;
+}
+
+/* Add this class before navigating away to fade the page out */
+body.fade-out {
+    opacity: 0;
+    pointer-events: none;
 }
