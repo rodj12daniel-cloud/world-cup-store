@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store - World Cup Store</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="Pics/logo.jpg" alt="World Cup Store logo">
+            <span>WORLD CUP STORE</span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="store.html">Store</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="index.html#shop" id="cart-btn">🛒 Cart (<span id="cart-count">0</span>)</a>
+    </header>
+
+    <section class="store-intro">
+        <h2>Visit Our Flagship Store</h2>
+        <p>Find the World Cup Store in Mendez, Cavite. Stop by for authentic jerseys, custom printing, and friendly support for every fan.</p>
+        <div class="store-grid">
+            <div class="store-card">
+                <h3>Store Location</h3>
+                <p>Palocpoc II, Mendez, Cavite Philippines.</p>
+            </div>
+            <div class="store-card">
+                <h3>Opening Hours</h3>
+                <p>Monday - Sunday<br>9:00 AM - 8:00 PM</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="store-map-section">
+        <h2>Find Us on the Map</h2>
+        <p>Use the interactive map below to see our store location and get directions.</p>
+        <div id="map"></div>
+    </section>
+
+    <footer>
+        <h3>WORLD CUP STORE</h3>
+        <p>Football Jerseys • 2026 Collection</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

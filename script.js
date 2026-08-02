@@ -2,19 +2,22 @@
 // LEAFLET MENDEZ MAP
 // =========================
 
-var map = L.map('map').setView([14.133014103571236, 120.87614638417914], 14);
+var mapElement = document.getElementById('map');
+if (mapElement && typeof L !== 'undefined') {
+    var map = L.map('map').setView([14.133014103571236, 120.87614638417914], 14);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
 
-var storeMarker = L.marker([14.133014103571236, 120.87614638417914]).addTo(map);
+    var storeMarker = L.marker([14.133014103571236, 120.87614638417914]).addTo(map);
 
-storeMarker.bindPopup(`
-    <b>World Cup Store</b><br>
-    Mendez, Cavite<br>
-    Open Daily: 9AM - 8PM
-`).openPopup();
+    storeMarker.bindPopup(`
+        <b>World Cup Store</b><br>
+        Mendez, Cavite<br>
+        Open Daily: 9AM - 8PM
+    `).openPopup();
+}
 
 
 // =========================
