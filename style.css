@@ -131,6 +131,8 @@ nav a {
     justify-content: center;
     text-decoration: none;
     color: #111;
+    font-size: 0.95rem;
+    line-height: 1.15;
     white-space: nowrap;
     font-weight: 700;
     text-transform: uppercase;
