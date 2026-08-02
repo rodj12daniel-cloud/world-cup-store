@@ -763,6 +763,13 @@ button:hover {
     justify-content: center;
 }
 
+.video-wrapper video {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
 .video-placeholder {
     padding: 40px 30px;
     color: #fff;
