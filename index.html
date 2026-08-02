@@ -30,6 +30,7 @@
         <nav class="main-nav">
             <a href="index.html">Home</a>
             <a href="index.html#shop">Shop</a>
+            <a href="items.html">Items</a>
             <a href="store.html">Store</a>
             <a href="contact.html">Contact</a>
         </nav>
@@ -58,7 +59,8 @@
                 'Pics/brazilsecondpic.jpg',    /* 2. THUMBNAIL 2 (YOUR SECOND PIC) */
                 'Pics/brazil/braziu2.jpg',     /* 3. THUMBNAIL 3 (REPLACE THIS PATH) */
                 'Pics/brazil/braziu4.jpg',    /* 4. THUMBNAIL 4 (REPLACE THIS PATH) */
-                'Official 2026 Brazil Home Jersey featuring dry-fit technology and iconic yellow colorway.'
+                'Official 2026 Brazil Home Jersey featuring dry-fit technology and iconic yellow colorway.',
+                'Jerseys'
             )">
                 <img src="Pics/braziu.avif" alt="Brazil Home Jersey">
                 <h3>Brazil Home Jersey</h3>
@@ -74,7 +76,8 @@
                 'Pics/arg/arg.jpg',               /* 2. THUMBNAIL 2 */
                 'Pics/arg/arg2.jpg',               /* 3. THUMBNAIL 3 */
                 'Pics/arg/arg3.jpg',               /* 4. THUMBNAIL 4 */
-                'Official 2026 Argentina Home Jersey with three stars embroidered on the chest.'
+                'Official 2026 Argentina Home Jersey with three stars embroidered on the chest.',
+                'Jerseys'
             )">
                 <img src="Pics/arg.jpg" alt="Argentina Home Jersey">
                 <h3>Argentina Home Jersey</h3>
@@ -90,7 +93,8 @@
                 'Pics/eng]/eng1.jpg',               /* 2. THUMBNAIL 2 */
                 'Pics/eng]/eng2.jpg',               /* 3. THUMBNAIL 3 */
                 'Pics/eng]/eng3.jpg',               /* 4. THUMBNAIL 4 */
-                'Official 2026 England Home Jersey designed for breathable, lightweight performance.'
+                'Official 2026 England Home Jersey designed for breathable, lightweight performance.',
+                'Jerseys'
             )">
                 <img src="Pics/eng.jpg" alt="England Home Jersey">
                 <h3>England Home Jersey</h3>
@@ -106,7 +110,8 @@
                 'Pics/spain/spain1.jpg',               /* 2. THUMBNAIL 2 */
                 'Pics/spain/spain2.jpg',               /* 3. THUMBNAIL 3 */
                 'Pics/spain/spain3.jpg',               /* 4. THUMBNAIL 4 */
-                'Official 2026 Spain Home Jersey designed for breathable, lightweight performance.'
+                'Official 2026 Spain Home Jersey designed for breathable, lightweight performance.',
+                'Jerseys'
             )">
                 <img src="Pics/spain.jpg" alt="Spain Home Jersey">
                 <h3>Spain Home Jersey</h3>
@@ -122,7 +127,8 @@
                 'Pics/jap/jap.jpg',               /* 2. THUMBNAIL 2 */
                 'Pics/jap/jap3.jpg',               /* 3. THUMBNAIL 3 */
                 'Pics/jap/jap4.jpg',               /* 4. THUMBNAIL 4 */
-                'Official 2026 Japan Home Jersey designed for breathable, lightweight performance.'
+                'Official 2026 Japan Home Jersey designed for breathable, lightweight performance.',
+                'Jerseys'
             )">
                 <img src="Pics/jap/jap2.jpg" alt="Japan Home Jersey">
                 <h3>Japan Home Jersey</h3>
@@ -138,7 +144,8 @@
                 'Pics/ger/ger1.jpg',               /* 2. THUMBNAIL 2 */
                 'Pics/ger/ger2.jpg',               /* 3. THUMBNAIL 3 */
                 'Pics/ger/ger3.jpg',               /* 4. THUMBNAIL 4 */
-                'Official 2026 Germany Home Jersey designed for breathable, lightweight performance.'
+                'Official 2026 Germany Home Jersey designed for breathable, lightweight performance.',
+                'Jerseys'
             )">
                 <img src="Pics/ger/ger.jpg" alt="Germany Home Jersey">
                 <h3>Germany Home Jersey</h3>
@@ -148,6 +155,8 @@
 
         </div>
     </section>
+
+    
 
     <!-- PRODUCT DETAILS MODAL -->
     <div class="product-modal" id="product-modal">
@@ -227,10 +236,54 @@
         </div>
     </section>
 
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="reviews">
+        <div class="reviews-inner">
+            <h2>Customer Reviews</h2>
+            <div id="reviews-list" class="reviews-list">
+                <!-- reviews will be injected here -->
+            </div>
+
+            <form id="review-form" class="review-form">
+                <div class="review-row">
+                    <input type="text" id="review-name" placeholder="Your name" required>
+                    <select id="review-rating" required>
+                        <option value="5">★★★★★ 5</option>
+                        <option value="4">★★★★ 4</option>
+                        <option value="3">★★★ 3</option>
+                        <option value="2">★★ 2</option>
+                        <option value="1">★ 1</option>
+                    </select>
+                </div>
+                <textarea id="review-text" placeholder="Write your review" rows="3" maxlength="350" required></textarea>
+                    <label style="font-size:0.9rem;color:#444;">Upload a photo (optional)
+                        <input type="file" id="review-image" accept="image/*" style="display:block;margin-top:8px;">
+                    </label>
+                <div class="review-actions">
+                    <button type="submit" class="button primary">Submit Review</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
     <footer>
         <h3>WORLD CUP STORE</h3>
         <p>Football Jerseys • 2026 Collection</p>
     </footer>
+
+    <!-- REVIEW DETAILS MODAL -->
+    <div class="review-modal" id="review-modal" aria-hidden="true">
+        <div class="review-box">
+            <button class="close-review" id="close-review" aria-label="Close review">✕</button>
+            <img id="review-modal-image" src="" alt="Review photo" class="review-modal-image">
+            <div class="review-modal-info">
+                <h3 id="review-modal-name">Anonymous</h3>
+                <div id="review-modal-rating" class="review-modal-rating">★★★★★</div>
+                <div id="review-modal-date" class="review-modal-date"></div>
+                <p id="review-modal-text"></p>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 

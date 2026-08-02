@@ -30,6 +30,20 @@ img {
     display: block;
 }
 
+/* Accessibility: ensure readable text across form controls and dynamic content */
+input, textarea, select, button, .button {
+    color: #111;
+    -webkit-text-fill-color: #111;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #777;
+}
+
+.reviews-list p {
+    color: #666;
+}
+
 
 /* =========================
    HEADER
@@ -414,6 +428,129 @@ button:hover {
     color: #111;
 }
 
+/* =========================
+   REVIEWS
+========================= */
+
+.reviews {
+    padding: 60px 20px;
+    background: linear-gradient(180deg, #fbfcff 0%, #f7fbff 100%);
+}
+
+.reviews-inner {
+    width: min(1100px, calc(100% - 32px));
+    margin: 0 auto;
+    display: grid;
+    gap: 18px;
+}
+
+.reviews h2 {
+    font-size: 2rem;
+    color: #111;
+    margin-bottom: 6px;
+}
+
+.reviews-list {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 12px 6px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.reviews-list::-webkit-scrollbar {
+    height: 10px;
+}
+
+.reviews-list::-webkit-scrollbar-thumb {
+    background: rgba(46, 139, 87, .35);
+    border-radius: 999px;
+}
+
+.review-card {
+    background: #fff;
+    padding: 16px;
+    border-radius: 14px;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 12px 30px rgba(17,24,39,0.04);
+    min-width: 300px;
+    flex: 0 0 320px;
+    scroll-snap-align: start;
+}
+
+.review-card .review-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.review-photo {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #e6e6e6;
+}
+
+.review-card .review-name {
+    font-weight: 700;
+    color: #0b6d33;
+}
+
+.review-card .review-rating {
+    color: #f6b21d;
+    font-weight: 700;
+}
+
+.review-card p {
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: calc(1.6em * 5);
+}
+
+.review-form {
+    display: grid;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.review-row {
+    display: flex;
+    gap: 12px;
+}
+
+.review-row input,
+.review-row select,
+.review-form textarea,
+.review-form input[type="file"] {
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    font-size: 1rem;
+    width: 100%;
+    background: #fff;
+}
+
+.review-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+    .review-row {
+        flex-direction: column;
+    }
+}
+
 
 /* =========================
    PRODUCT DETAILS POPUP
@@ -494,6 +631,78 @@ button:hover {
 
 .thumbnail img:hover {
     border: 2px solid black;
+}
+
+/* =========================
+   REVIEW DETAILS MODAL
+========================= */
+
+.review-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 5000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.review-modal.active {
+    display: flex;
+}
+.review-box {
+    width: 760px;
+    max-width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    position: relative;
+}
+.review-modal-image {
+    width: 360px;
+    max-width: 45%;
+    height: 360px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #e6e6e6;
+}
+.review-modal-info {
+    flex: 1 1 auto;
+}
+.review-modal-info h3 { margin: 0 0 6px 0; }
+.review-modal-rating { color: #f6b21d; margin-bottom: 6px; font-weight:700; }
+.review-modal-date { color: #666; font-size: 0.9rem; margin-bottom: 10px; }
+.review-modal p { color:#222; line-height:1.6; }
+
+/* ensure long/unbroken text wraps inside modal */
+.review-modal-info p {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: pre-wrap;
+    hyphens: auto;
+}
+.close-review {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    background: #f4f4f5;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+@media (max-width: 720px) {
+    .review-box { flex-direction: column; align-items: center; }
+    .review-modal-image { width: 100%; height: 220px; }
+    .close-review { right: 10px; top: 10px; }
 }
 
 
@@ -785,6 +994,78 @@ button:hover {
     }
 }
 
+/* =========================
+   ITEMS / CATALOG PAGE
+========================= */
+
+.items-controls input[type="search"] {
+    background: #fff;
+}
+
+.category-filters .filter-btn {
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(17,24,39,0.06);
+    background: #fff;
+    color: #111;
+    margin-left: 6px;
+}
+
+.category-filters .filter-btn.active {
+    background: linear-gradient(135deg, #2E8B57, #1F6B41);
+    color: #fff;
+}
+
+/* reuse .card styles from products for the grid; ensure buttons inside are visible */
+.product-card-actions .button {
+    width: 100%;
+}
+
+@media (max-width: 680px) {
+    #items-grid {
+        grid-template-columns: repeat(2, minmax(140px,1fr));
+    }
+}
+
+/* Ensure items grid overrides any shared product-container rules */
+#items-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+    gap: 28px !important;
+}
+
+#items-grid .card {
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* Uniform card sizing and image handling on items page */
+#items-grid .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px;
+    background: #fff;
+    border-radius: 8px;
+    min-height: 340px;
+}
+
+#items-grid .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Make the search input more visible */
+.items-controls input[type="search"], #product-search {
+    border: 1px solid #cbd5e1 !important;
+    padding: 10px 14px !important;
+    background: #fff;
+}
+
+
+
 @media (max-width: 600px) {
     .video-section h2 {
         font-size: 2rem;
@@ -916,6 +1197,14 @@ button:hover {
     border-radius: 30px;
     border: 1px solid rgba(255,255,255,0.16);
     box-shadow: 0 40px 90px rgba(0,0,0,0.38);
+}
+
+/* Ensure hero buttons use white text for readable contrast (overrides generic button color) */
+.store-hero .button,
+.store-hero .button.primary,
+.store-hero .button.secondary {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
 }
 
 .store-details-section,

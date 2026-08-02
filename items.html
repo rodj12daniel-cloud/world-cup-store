@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items - World Cup Store</title>
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <img src="Pics/logo.jpg" alt="World Cup Store logo">
+        </a>
+
+        <button id="menu-toggle" class="menu-toggle" aria-label="Open navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="items.html">Items</a>
+            <a href="store.html">Store</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="#" id="cart-btn">🛒 Cart (<span id="cart-count">0</span>)</a>
+    </header>
+
+    <section class="products">
+        <h2>All Items</h2>
+
+        <div class="items-controls" style="max-width:1100px;margin:16px auto 28px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;">
+            <div style="display:flex;gap:8px;align-items:center;">
+                <input id="product-search" type="search" placeholder="Search products by name" style="padding:10px 14px;border-radius:10px;border:1px solid rgba(17,24,39,0.06);width:320px;">
+            </div>
+            <div class="category-filters">
+                <button class="filter-btn button secondary" data-category="All">All</button>
+                <button class="filter-btn button secondary" data-category="Jerseys">Jerseys</button>
+                <button class="filter-btn button secondary" data-category="Footballs">Footballs</button>
+                <button class="filter-btn button secondary" data-category="T-Shirts">T-Shirts</button>
+                <button class="filter-btn button secondary" data-category="Jackets">Jackets</button>
+            </div>
+        </div>
+
+        <div id="items-grid" class="product-container" style="max-width:1200px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:28px;">
+            <!-- product cards injected here -->
+        </div>
+    </section>
+
+    <!-- PRODUCT DETAILS MODAL (copied from index.html) -->
+    <div class="product-modal" id="product-modal">
+        <div class="product-box">
+            <button class="close-product" onclick="closeProduct()">X</button>
+
+          <div class="gallery">
+
+    <div class="image-viewer">
+        <img id="main-image" src="" alt="">
+    </div>
+
+    <div class="thumbnail">
+        <img id="photo1" src="" onclick="changeImage(this.src)">
+        <img id="photo2" src="" onclick="changeImage(this.src)">
+        <img id="photo3" src="" onclick="changeImage(this.src)">
+        <img id="photo4" src="" onclick="changeImage(this.src)">
+    </div>
+
+</div>
+
+            <div class="product-info">
+                <h1 id="product-name"></h1>
+                <h2>₱<span id="product-price"></span></h2>
+                <p id="product-description"></p>
+
+                <h3>Select Size</h3>
+                <select id="product-size">
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                    <option>XL</option>
+                    <option>XXL</option>
+                </select>
+
+                <div class="customization">
+                    <h3>Customize Name & Number</h3>
+                    <label>
+                        Player Name
+                        <input type="text" id="custom-name" placeholder="e.g. MESSI" pattern="[A-Za-z ]*" title="Letters only" maxlength="11">
+                    </label>
+                    <label>
+                        Player Number
+                        <input type="text" id="custom-number" placeholder="e.g. 10" pattern="\d*" title="Numbers only" maxlength="2">
+                    </label>
+                    <p class="custom-note">Custom name or number adds ₱1,000 to the total price. Customized shirts include 2026 FIFA World Cup patches.</p>
+                </div>
+
+                <button id="modal-cart">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button id="close-cart">X</button>
+        </div>
+
+        <div id="cart-items"></div>
+
+        <h3>Total: ₱<span id="cart-total">0</span></h3>
+
+        <button id="checkout-btn" class="checkout">Checkout</button>
+    </div>
+
+    <footer>
+        <h3>WORLD CUP STORE</h3>
+        <p>Football Jerseys • 2026 Collection</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
