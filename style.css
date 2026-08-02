@@ -705,7 +705,6 @@ button:hover {
     .close-review { right: 10px; top: 10px; }
 }
 
-
 /* PRODUCT INFO */
 
 .product-info {
@@ -1083,10 +1082,6 @@ button:hover {
 
 .store-hero {
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    align-items: center;
-    gap: 60px;
     padding: 100px 50px;
     background:
         radial-gradient(700px 300px at 85% -10%, rgba(74, 222, 128, 0.18), transparent 60%),
@@ -1095,6 +1090,15 @@ button:hover {
     color: #fff;
     min-height: 660px;
     overflow: hidden;
+}
+
+.store-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+    gap: 60px;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 .store-hero::after {
@@ -1186,25 +1190,22 @@ button:hover {
 
 .store-hero-media {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end; /* push image to the right side of its column */
+    padding-left: 40px; /* add breathing room from left */
 }
 
 .store-hero-media img {
     width: 100%;
-    max-width: 760px;
     height: 560px;
     object-fit: cover;
-    border-radius: 30px;
-    border: 1px solid rgba(255,255,255,0.16);
-    box-shadow: 0 40px 90px rgba(0,0,0,0.38);
+    border-radius: 24px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 40px 90px rgba(0,0,0,0.28);
+    transition: transform 0.35s ease;
 }
 
-/* Ensure hero buttons use white text for readable contrast (overrides generic button color) */
-.store-hero .button,
-.store-hero .button.primary,
-.store-hero .button.secondary {
-    color: #fff;
-    -webkit-text-fill-color: #fff;
+.store-hero-media img:hover {
+    transform: translateY(-4px);
 }
 
 .store-details-section,
@@ -1213,6 +1214,8 @@ button:hover {
     padding: 80px 50px;
     text-align: center;
 }
+
+/* header parity: rely on global header rules so all pages match */
 
 .store-details-grid,
 .service-grid {
@@ -1349,7 +1352,7 @@ button:hover {
 }
 
 @media (max-width: 1100px) {
-    .store-hero,
+    .store-hero-inner,
     .map-panel {
         grid-template-columns: 1fr;
     }
@@ -1377,6 +1380,9 @@ button:hover {
 
     .store-hero {
         padding: 56px 22px;
+    }
+
+    .store-hero-inner {
         gap: 40px;
     }
 
