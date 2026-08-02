@@ -37,7 +37,7 @@ img {
 
 header {
     display: grid;
-    grid-template-columns: min-content 1fr min-content;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     padding: 20px 40px;
     background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.75) 100%);
@@ -50,12 +50,21 @@ header {
     gap: 24px;
 }
 
-.menu-toggle {
-    display: none;
+.logo {
+    justify-self: start;
 }
 
 .main-nav {
     display: flex;
+    justify-self: center;
+}
+
+#cart-btn {
+    justify-self: end;
+}
+
+.menu-toggle {
+    display: none;
 }
 
 .logo {
