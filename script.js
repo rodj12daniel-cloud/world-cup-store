@@ -129,6 +129,26 @@ function initializeCartUI() {
     cartSidebar = document.querySelector(".cart");
     updateCart();
     bindCartEvents();
+    bindMenuToggle();
+}
+
+function bindMenuToggle() {
+    const menuToggle = document.getElementById("menu-toggle");
+    const mainNav = document.querySelector(".main-nav");
+
+    if (!menuToggle || !mainNav) return;
+
+    menuToggle.addEventListener("click", function() {
+        const isOpen = mainNav.classList.toggle("active");
+        menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    document.addEventListener("click", function(event) {
+        if (!mainNav.contains(event.target) && !menuToggle.contains(event.target)) {
+            mainNav.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
+        }
+    });
 }
 
 if (document.readyState === "loading") {
