@@ -130,6 +130,7 @@ function initializeCartUI() {
     updateCart();
     bindCartEvents();
     bindMenuToggle();
+    initializeHomepageVideo();
 }
 
 function bindMenuToggle() {
@@ -149,6 +150,25 @@ function bindMenuToggle() {
             menuToggle.setAttribute("aria-expanded", "false");
         }
     });
+}
+
+function initializeHomepageVideo() {
+    const homeVideo = document.getElementById("home-kit-video");
+    if (!homeVideo) return;
+
+    homeVideo.muted = true;
+    homeVideo.setAttribute("playsinline", "");
+    homeVideo.setAttribute("webkit-playsinline", "");
+
+    const playPromise = homeVideo.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            homeVideo.addEventListener("click", function handleVideoTap() {
+                homeVideo.play();
+                homeVideo.removeEventListener("click", handleVideoTap);
+            });
+        });
+    }
 }
 
 if (document.readyState === "loading") {
