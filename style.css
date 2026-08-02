@@ -71,6 +71,13 @@ header {
 .main-nav {
     display: flex;
     justify-self: center;
+    /* Absolutely center the nav within the header for precise centering */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1100;
+    width: auto;
 }
 
 #cart-btn {
@@ -190,6 +197,14 @@ nav a:hover {
         font-size: 20px;
         color: #fff;
     }
+
+    /* Restore normal flow on small screens so the menu toggle and cart don't overlap */
+    .main-nav {
+        position: static;
+        transform: none;
+        justify-self: center;
+        z-index: auto;
+    }
 }
 
 .product-container {
@@ -280,8 +295,8 @@ nav a:hover {
 
 .hero {
     height: 650px;
-    background: linear-gradient(180deg, rgba(10, 51, 30, 0.55) 0%, rgba(46, 139, 87, 0.35) 60%, rgba(255,255,255,0.05) 100%),
-                url("Pics/wallpaper.jpg") center/cover;
+    /* Removed green gradient overlay so the photo shows without tint */
+    background: url("Pics/wallpaper.jpg") center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
