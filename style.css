@@ -1313,6 +1313,36 @@ footer {
 .owner-info p {
     font-size: 17px;
     line-height: 1.75;
+}
+
+.contact-info .social-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 18px;
+}
+
+.contact-info .social-links a {
+    display: inline-flex;
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-info .social-links a:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 22px rgba(0, 0, 0, 0.12);
+}
+
+.contact-info .social-links img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
     color: #3d475a;
     margin-bottom: 16px;
 }
