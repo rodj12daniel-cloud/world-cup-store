@@ -1187,7 +1187,7 @@ footer {
         padding: 8px;
         cursor: pointer;
         box-shadow: 0 16px 30px rgba(0, 0, 0, .18);
-        z-index: 2000;
+        z-index: 2100;
         position: relative;
     }
 
@@ -1211,8 +1211,8 @@ footer {
         display: none;
         flex-direction: column;
         gap: 12px;
-        z-index: 1950;
-        max-height: calc(100vh - 84px);
+        z-index: 2050;
+        max-height: calc(100vh - 140px);
         overflow-y: auto;
     }
 
@@ -1250,7 +1250,7 @@ footer {
         justify-content: center !important;
         align-items: center !important;
         display: inline-flex !important;
-        z-index: 1800 !important;
+        z-index: 1700 !important;
         pointer-events: auto !important;
     }
 
