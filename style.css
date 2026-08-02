@@ -1238,7 +1238,8 @@ footer {
         order: 4;
         position: fixed !important;
         bottom: 18px !important;
-        right: 18px !important;
+        left: 18px !important;
+        right: auto !important;
         width: 56px !important;
         height: 56px !important;
         min-width: 56px !important;
