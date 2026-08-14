@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Cup Store</title>
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/jpeg" href="Pics/logo.jpg">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <img src="Pics/logo.jpg" alt="World Cup Store logo">
+        </a>
+
+        <button id="menu-toggle" class="menu-toggle" aria-label="Open navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="items.html">Items</a>
+            <a href="store.html">Store</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="#" id="cart-btn">🛒 Cart (<span id="cart-count">0</span>)</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>WEAR YOUR<br>NATION WITH PRIDE</h1>
+            <p>Official 2026 World Cup Jerseys</p>
+            <button>Shop Now</button>
+        </div>
+    </section>
+
+    <section id="shop" class="products">
+        <h2>Featured Items</h2>
+
+        <div class="product-container">
+
+            <!-- PRODUCT 1: BRAZIL -->
+            <div class="card" onclick="openProduct(
+                'Nike Brazil Home Jersey',
+                '3795',
+                'Pics/braziu.avif',             /* 1. MAIN PHOTO & THUMBNAIL 1 */
+                'Pics/brazilsecondpic.jpg',    /* 2. THUMBNAIL 2 (YOUR SECOND PIC) */
+                'Pics/brazil/braziu2.jpg',     /* 3. THUMBNAIL 3 (REPLACE THIS PATH) */
+                'Pics/brazil/braziu4.jpg',    /* 4. THUMBNAIL 4 (REPLACE THIS PATH) */
+                'Official 2026 Brazil Home Jersey featuring dry-fit technology and iconic yellow colorway.',
+                'Jerseys'
+            )">
+                <img src="Pics/braziu.avif" alt="Nike Brazil Home Jersey">
+                <h3>Nike Brazil Home Jersey</h3>
+                <p>2026 Edition</p>
+                <span>₱3,795</span>
+            </div>
+
+            <!-- PRODUCT 2: ARGENTINA -->
+            <div class="card" onclick="openProduct(
+                'adidas Argentina Home Jersey',
+                '3795',
+                'Pics/arg.jpg',               /* 1. MAIN PHOTO & THUMBNAIL 1 */
+                'Pics/arg/arg.jpg',               /* 2. THUMBNAIL 2 */
+                'Pics/arg/arg2.jpg',               /* 3. THUMBNAIL 3 */
+                'Pics/arg/arg3.jpg',               /* 4. THUMBNAIL 4 */
+                'Official 2026 Argentina Home Jersey with three stars embroidered on the chest.',
+                'Jerseys'
+            )">
+                <img src="Pics/arg.jpg" alt="adidas Argentina Home Jersey">
+                <h3>adidas Argentina Home Jersey</h3>
+                <p>2026 Edition</p>
+                <span>₱3,795</span>
+            </div>
+
+            <!-- PRODUCT 3: ENGLAND -->
+            <div class="card" onclick="openProduct(
+                'Nike England Home Jersey',
+                '3795',
+                'Pics/eng.jpg',               /* 1. MAIN PHOTO & THUMBNAIL 1 */
+                'Pics/eng]/eng1.jpg',               /* 2. THUMBNAIL 2 */
+                'Pics/eng]/eng2.jpg',               /* 3. THUMBNAIL 3 */
+                'Pics/eng]/eng3.jpg',               /* 4. THUMBNAIL 4 */
+                'Official 2026 England Home Jersey designed for breathable, lightweight performance.',
+                'Jerseys'
+            )">
+                <img src="Pics/eng.jpg" alt="Nike England Home Jersey">
+                <h3>Nike England Home Jersey</h3>
+                <p>2026 Edition</p>
+                <span>₱3,795</span>
+            </div>
+
+            <!-- PRODUCT 4: Spain -->
+            <div class="card" onclick="openProduct(
+                'adidas Spain Home Jersey',
+                '3795',
+                'Pics/spain.jpg',               /* 1. MAIN PHOTO & THUMBNAIL 1 */
+                'Pics/spain/spain1.jpg',               /* 2. THUMBNAIL 2 */
+                'Pics/spain/spain2.jpg',               /* 3. THUMBNAIL 3 */
+                'Pics/spain/spain3.jpg',               /* 4. THUMBNAIL 4 */
+                'Official 2026 Spain Home Jersey designed for breathable, lightweight performance.',
+                'Jerseys'
+            )">
+                <img src="Pics/spain.jpg" alt="adidas Spain Home Jersey">
+                <h3>adidas Spain Home Jersey</h3>
+                <p>2026 Edition</p>
+                <span>₱3,795</span>
+            </div>
+
+             <!-- PRODUCT 5: Japan -->
+            <div class="card" onclick="openProduct(
+                'adidas Japan Home Jersey',
+                '3795',
+                'Pics/jap/jap2.jpg',               /* 1. MAIN PHOTO & THUMBNAIL 1 */
+                'Pics/jap/jap.jpg',               /* 2. THUMBNAIL 2 */
+                'Pics/jap/jap3.jpg',               /* 3. THUMBNAIL 3 */
+                'Pics/jap/jap4.jpg',               /* 4. THUMBNAIL 4 */
+                'Official 2026 Japan Home Jersey designed for breathable, lightweight performance.',
+                'Jerseys'
+            )">
+                <img src="Pics/jap/jap2.jpg" alt="adidas Japan Home Jersey">
+                <h3>adidas Japan Home Jersey</h3>
+                <p>2026 Edition</p>
+                <span>₱3,795</span>
+            </div>
+
+                  <!-- PRODUCT 5: Germany -->
+            <div class="card" onclick="openProduct(
+                'adidas Germany Home Jersey',
+                '3795',
+                'Pics/ger/ger.jpg',               /* 1. MAIN PHOTO & THUMBNAIL 1 */
+                'Pics/ger/ger1.jpg',               /* 2. THUMBNAIL 2 */
+                'Pics/ger/ger2.jpg',               /* 3. THUMBNAIL 3 */
+                'Pics/ger/ger3.jpg',               /* 4. THUMBNAIL 4 */
+                'Official 2026 Germany Home Jersey designed for breathable, lightweight performance.',
+                'Jerseys'
+            )">
+                <img src="Pics/ger/ger.jpg" alt="adidas Germany Home Jersey">
+                <h3>adidas Germany Home Jersey</h3>
+                <p>2026 Edition</p>
+                <span>₱3,795</span>
+            </div>
+
+        </div>
+    </section>
+
+    
+
+    <!-- PRODUCT DETAILS MODAL -->
+    <div class="product-modal" id="product-modal">
+        <div class="product-box">
+            <button class="close-product" onclick="closeProduct()">X</button>
+
+          <div class="gallery">
+
+    <div class="image-viewer">
+        <img id="main-image" src="" alt="">
+    </div>
+
+    <div class="thumbnail">
+        <img id="photo1" src="" onclick="changeImage(this.src)">
+        <img id="photo2" src="" onclick="changeImage(this.src)">
+        <img id="photo3" src="" onclick="changeImage(this.src)">
+        <img id="photo4" src="" onclick="changeImage(this.src)">
+    </div>
+
+</div>
+
+            <div class="product-info">
+                <h1 id="product-name"></h1>
+                <h2>₱<span id="product-price"></span></h2>
+                <p id="product-description"></p>
+
+                <h3>Select Size</h3>
+                <select id="product-size">
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                    <option>XL</option>
+                    <option>XXL</option>
+                </select>
+
+                <div class="customization">
+                    <h3>Customize Name & Number</h3>
+                    <label>
+                        Player Name
+                        <input type="text" id="custom-name" placeholder="e.g. MESSI" pattern="[A-Za-z ]*" title="Letters only" maxlength="11">
+                    </label>
+                    <label>
+                        Player Number
+                        <input type="text" id="custom-number" placeholder="e.g. 10" pattern="\d*" title="Numbers only" maxlength="2">
+                    </label>
+                    <p class="custom-note">Custom name or number adds ₱1,000 to the total price. Customized shirts include 2026 FIFA World Cup patches.</p>
+                </div>
+
+                <button id="modal-cart">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button id="close-cart">X</button>
+        </div>
+
+        <div id="cart-items"></div>
+
+        <h3>Total: ₱<span id="cart-total">0</span></h3>
+
+        <button id="checkout-btn" class="checkout">Checkout</button>
+    </div>
+
+    <!-- VIDEO SECTION -->
+    <section id="location" class="video-section">
+        <h2>Argentina Away Kit, available soon</h2>
+        <p>Watch our latest kit preview as the new release approaches.</p>
+        <div class="video-wrapper">
+            <video id="home-kit-video" autoplay muted loop playsinline webkit-playsinline preload="metadata">
+                <source src="Pics/arg/vid.webm" type="video/webm">
+                Your browser does not support the HTML5 video tag.
+            </video>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="reviews">
+        <div class="reviews-inner">
+            <h2>Customer Reviews</h2>
+            <div id="reviews-list" class="reviews-list">
+                <!-- reviews will be injected here -->
+            </div>
+
+            <form id="review-form" class="review-form">
+                <div class="review-row">
+                    <input type="text" id="review-name" placeholder="Your name" required>
+                    <select id="review-rating" required>
+                        <option value="5">★★★★★ 5</option>
+                        <option value="4">★★★★ 4</option>
+                        <option value="3">★★★ 3</option>
+                        <option value="2">★★ 2</option>
+                        <option value="1">★ 1</option>
+                    </select>
+                </div>
+                <textarea id="review-text" placeholder="Write your review" rows="3" maxlength="350" required></textarea>
+                    <label style="font-size:0.9rem;color:#444;">Upload a photo (optional)
+                        <input type="file" id="review-image" accept="image/*" style="display:block;margin-top:8px;">
+                    </label>
+                <div class="review-actions">
+                    <button type="submit" class="button primary">Submit Review</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <h3>WORLD CUP STORE</h3>
+        <p>Football Jerseys • 2026 Collection</p>
+    </footer>
+
+    <!-- REVIEW DETAILS MODAL -->
+    <div class="review-modal" id="review-modal" aria-hidden="true">
+        <div class="review-box">
+            <button class="close-review" id="close-review" aria-label="Close review">✕</button>
+            <img id="review-modal-image" src="" alt="Review photo" class="review-modal-image">
+            <div class="review-modal-info">
+                <h3 id="review-modal-name">Anonymous</h3>
+                <div id="review-modal-rating" class="review-modal-rating">★★★★★</div>
+                <div id="review-modal-date" class="review-modal-date"></div>
+                <p id="review-modal-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store - World Cup Store</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="Pics/logo.jpg">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="store-page">
+    <header>
+        <a href="index.html" class="logo">
+            <img src="Pics/logo.jpg" alt="World Cup Store logo">
+        </a>
+
+        <button id="menu-toggle" class="menu-toggle" aria-label="Open navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="items.html">Items</a>
+            <a href="store.html">Store</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="#" id="cart-btn">🛒 Cart (<span id="cart-count">0</span>)</a>
+    </header>
+
+    <section class="store-hero">
+        <div class="store-hero-inner">
+        <div class="store-hero-copy">
+            <span class="eyebrow">Flagship Location</span>
+            <h1>Shop In Person at World Cup Store</h1>
+            <p>Discover authentic 2026 jerseys, custom printing, and fast customer service at our Mendez flagship store.</p>
+            <div class="hero-actions">
+                <a href="index.html#shop" class="button primary">Browse Jerseys</a>
+                <a href="contact.html" class="button secondary">Contact Us</a>
+            </div>
+        </div>
+        <div class="store-hero-media">
+            <img src="Pics/contact/store.jpg" alt="World Cup Store interior">
+        </div>
+        </div>
+    </section>
+
+    <section class="store-details-section">
+        <div class="store-details-grid">
+            <article class="store-card">
+                <h3>Our Location</h3>
+                <p>Palocpoc II, Mendez, Cavite Philippines</p>
+            </article>
+            <article class="store-card">
+                <h3>Opening Hours</h3>
+                <p>Monday - Sunday<br>9:00 AM - 8:00 PM</p>
+            </article>
+            <article class="store-card">
+                <h3>Customer Support</h3>
+                <p>+63 912 345 6789<br>worldcupstore@email.com</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="store-services">
+        <div class="section-header">
+            <span class="eyebrow">In-Store Services</span>
+            <h2>Everything you need from fit to finish</h2>
+            <p>Visit our store for premium jerseys, same-day customization, and expert service from our football fans turned staff.</p>
+        </div>
+        <div class="service-grid">
+            <div class="service-card">
+                <img src="Pics/in%20store%20services/authentic.jpg" alt="Authentic jerseys">
+                <h3>Authentic Jerseys</h3>
+                <p>Explore the latest national team kits and fan essentials in premium quality.</p>
+            </div>
+            <div class="service-card">
+                <img src="Pics/in%20store%20services/customized.jpg" alt="Custom printing">
+                <h3>Custom Printing</h3>
+                <p>Personalize your jersey with names and numbers while you wait.</p>
+            </div>
+            <div class="service-card">
+                <img src="Pics/in%20store%20services/checkout.jpg" alt="Fast checkout">
+                <h3>Fast Checkout</h3>
+                <p>Easy payment and fast pickup so you can wear your new kit immediately.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="store-map-section">
+        <div class="map-panel">
+            <div class="map-panel-info">
+                <span class="eyebrow">Find Us</span>
+                <h2>Visit Our Store in Mendez</h2>
+                <p>Use the interactive map to locate our store and plan your visit. We’re easy to reach and ready to serve every fan.</p>
+                <ul>
+                    <li>Secure parking available</li>
+                    <li>Quick fitting and purchase</li>
+                    <li>Friendly, expert support</li>
+                </ul>
+            </div>
+            <div class="map-card">
+                <div id="map"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button id="close-cart">X</button>
+        </div>
+
+        <div id="cart-items"></div>
+
+        <h3>Total: ₱<span id="cart-total">0</span></h3>
+
+        <button id="checkout-btn" class="checkout">Checkout with PayMongo</button>
+    </div>
+
+    <footer>
+        <h3>WORLD CUP STORE</h3>
+        <p>Football Jerseys • 2026 Collection</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
