@@ -16,7 +16,8 @@ html {
 body {
     font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     color: #111;
-    background: linear-gradient(145deg, #f4ea93 0%, #f9f6ed 45%, hsl(90, 33%, 99%) 100%);
+
+    background: linear-gradient(145deg, #fcfcfc 0%, #edf9f1 45%, #f8fcf9 100%);
     min-width: 0;
 }
 
