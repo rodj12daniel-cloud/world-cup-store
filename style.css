@@ -17,7 +17,7 @@ body {
     font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     color: #111;
 
-    background: linear-gradient(145deg, #fcfcfc 0%, #edf9f1 45%, #f8fcf9 100%);
+    background: linear-gradient(145deg, #ffffff 0%, #edf9f1 45%, #f8fcf9 100%);
     min-width: 0;
 }
 
@@ -320,7 +320,7 @@ nav a:hover {
     z-index: 1;
     max-width: 640px;
     padding: 50px 30px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(241, 240, 240, 0.12);
     border-radius: 28px;
     border: 1px solid rgba(255,255,255,0.24);
     box-shadow: 0 25px 70px rgba(31, 107, 65, 0.16);
@@ -350,6 +350,8 @@ nav a:hover {
     width: auto;
     margin-top: 30px;
     padding: 14px 36px;
+
+  
 }
 
 .hero p {
@@ -358,8 +360,8 @@ nav a:hover {
 }
 
 button {
-    background: linear-gradient(135deg, #2E8B57, #1F6B41);
-    color: #fff;
+    background: linear-gradient(135deg, #c49a2e, #e0bd55);
+    color: #fffefe;
     border: none;
     padding: 15px 35px;
     border-radius: 30px;
@@ -368,7 +370,7 @@ button {
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: background .3s ease, transform .2s ease, box-shadow .2s ease;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, .15);
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.15);
 }
 
 button:hover {
@@ -390,6 +392,13 @@ button:hover {
 .products h2 {
     font-size: 40px;
     margin-bottom: 50px;
+    font-weight: 800;
+
+    color: #c9a227;
+
+    text-shadow:
+        0 1px 1px rgba(0, 0, 0, 0.35),
+        0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .product-container {
