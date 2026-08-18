@@ -224,6 +224,8 @@ nav a:hover {
     padding: 12px 10px;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    max-width: 72%;
+    margin: 0 auto;
 }
 
 .product-container .card {
@@ -233,68 +235,21 @@ nav a:hover {
 }
 
 .product-container::-webkit-scrollbar {
-    height: 10px;
+    height: 6px;
 }
 
 .product-container::-webkit-scrollbar-thumb {
-    background: rgba(46, 139, 87, .35);
+    background: rgba(212, 175, 55, 0.7);
     border-radius: 999px;
 }
 
 .product-container::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, .75);
+    border-radius: 999px;
 }
 
 .products {
     position: relative;
-}
-
-.products::before,
-.products::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 44px;
-    height: 44px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.96);
-    box-shadow: 0 15px 40px rgba(46, 139, 87, 0.14);
-    display: none;
-    font-size: 24px;
-    color: #2E8B57;
-    text-align: center;
-    line-height: 44px;
-    cursor: pointer;
-    transition: transform .3s ease;
-}
-
-.products::before {
-    content: '‹';
-    left: 12px;
-    transform: translateY(-50%);
-    background-image: linear-gradient(90deg, rgba(255,255,255,.95), rgba(255,255,255,0));
-}
-
-.products::after {
-    content: '›';
-    right: 12px;
-    transform: translateY(-50%);
-    background-image: linear-gradient(270deg, rgba(255,255,255,.95), rgba(255,255,255,0));
-}
-
-.products::before:hover {
-    transform: translateY(-50%) translateX(-4px);
-}
-
-.products::after:hover {
-    transform: translateY(-50%) translateX(4px);
-}
-
-@media (min-width: 900px) {
-    .products::before,
-    .products::after {
-        display: block;
-    }
 }
 
 
@@ -423,16 +378,16 @@ button:hover {
     background: linear-gradient(180deg, #ffffff 0%, #eef8f2 100%);
     border-radius: 20px;
     overflow: hidden;
-    border: 1px solid rgba(46, 139, 87, .14);
-    box-shadow: 0 18px 40px rgba(46, 139, 87, .12);
+    border: 1px solid rgba(212, 175, 55, .25);
+    box-shadow: 0 18px 40px rgba(212, 175, 55, .14);
     cursor: pointer;
     transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
 }
 
 .card:hover {
     transform: translateY(-10px);
-    border-color: rgba(46, 139, 87, .35);
-    box-shadow: 0 24px 48px rgba(46, 139, 87, .18);
+    border-color: rgba(212, 175, 55, .45);
+    box-shadow: 0 24px 48px rgba(212, 175, 55, .18);
 }
 
 .card img {
@@ -847,20 +802,20 @@ button:hover {
 
 /* Close button (X) */
 #close-cart {
-    background: #f4f4f5;
+    background: linear-gradient(135deg, #2E8B57, #1F6B41);
     border: none;
     width: 32px;
     height: 32px;
     border-radius: 50%;
     cursor: pointer;
     font-weight: bold;
-    color: #555;
+    color: #fff;
     transition: background 0.2s, color 0.2s;
 }
 
 #close-cart:hover {
-    background: #e4e4e7;
-    color: #000;
+    background: linear-gradient(135deg, #1F6B41, #174F32);
+    color: #fff;
 }
 
 .cart-item {
@@ -917,16 +872,23 @@ button:hover {
 
 .cart-item-actions .remove-button {
     margin-left: auto;
-    background: transparent;
-    border: none;
-    color: #d13535;
+    background: #d13535;
+    border: 1px solid #d13535;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 /* Styled Cart Buttons (+, -, Remove) */
 .cart-item button {
     padding: 6px 12px;
-    border: 1px solid #e4e4e7;
-    background: #fafafa;
+    border: 1px solid rgba(46, 139, 87, 0.35);
+    background: linear-gradient(135deg, #2E8B57, #1F6B41);
+    color: #fff;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
@@ -935,9 +897,15 @@ button:hover {
 }
 
 .cart-item button:hover {
-    background: #111;
+    background: linear-gradient(135deg, #1F6B41, #174F32);
     color: #fff;
-    border-color: #111;
+    border-color: rgba(23, 79, 50, 0.9);
+}
+
+.cart-item-actions .remove-button:hover {
+    background: #a61f1f;
+    color: #fff;
+    border-color: #a61f1f;
 }
 
 /* Total Price Header */
