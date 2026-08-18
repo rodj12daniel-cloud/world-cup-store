@@ -32,9 +32,15 @@ img {
 }
 
 /* Accessibility: ensure readable text across form controls and dynamic content */
-input, textarea, select, button, .button {
+input, textarea, select {
     color: #111;
     -webkit-text-fill-color: #111;
+}
+
+button,
+.button {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
 }
 
 input::placeholder, textarea::placeholder {
@@ -360,7 +366,7 @@ nav a:hover {
 }
 
 button {
-    background: linear-gradient(135deg, #c49a2e, #e0bd55);
+    background: linear-gradient(135deg, #2E8B57, #1F6B41);
     color: #fffefe;
     border: none;
     padding: 15px 35px;
@@ -370,11 +376,11 @@ button {
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: background .3s ease, transform .2s ease, box-shadow .2s ease;
-    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 30px rgba(46, 139, 87, 0.18);
 }
 
 button:hover {
-    background: linear-gradient(135deg, #3D9B67, #2E8B57);
+    background: linear-gradient(135deg, #1F6B41, #174F32);
     transform: translateY(-2px);
     box-shadow: 0 18px 34px rgba(0,0,0,0.2);
 }
@@ -1440,31 +1446,31 @@ button:hover {
 }
 
 .button.primary {
-    background: linear-gradient(135deg, #ecd960, #1F6B41);
+    background: linear-gradient(135deg, #2E8B57, #1F6B41);
     color: #fff;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 15px 30px rgba(46, 139, 87, 0.2);
 }
 
 .button.secondary {
-    background: transparent;
+    background: linear-gradient(135deg, #2E8B57, #1F6B41);
     color: #fff;
-    border: 1px solid rgba(255,255,255,0.5);
+    border: 1px solid rgba(46, 139, 87, 0.7);
 }
 
 .store-hero .button.primary {
-    background: linear-gradient(135deg, #ffd84d, #f4b400);
+    background: linear-gradient(135deg, #2E8B57, #1F6B41);
     color: #fefcfc;
-    box-shadow: 0 16px 34px rgba(244, 180, 0, 0.35);
+    box-shadow: 0 16px 34px rgba(46, 139, 87, 0.28);
 }
 
 .store-hero .button.primary:hover {
-    box-shadow: 0 20px 40px rgba(244, 180, 0, 0.42);
+    box-shadow: 0 20px 40px rgba(46, 139, 87, 0.34);
 }
 
 .store-hero .button.secondary {
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, #2E8B57, #1F6B41);
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(46, 139, 87, 0.9);
     backdrop-filter: blur(10px);
 }
 
